@@ -1,0 +1,21 @@
+PFont typo;
+
+String message="Debug";
+
+void setup(){
+  size(800,800);  
+  typo = loadFont("C059-Bold-48.vlw");
+}
+
+void draw(){
+  background(0);
+  textFont(typo);
+  fill(random(255),random(255),random(255));
+  
+  fill(255);
+  text(message
+    +"\n framecount : "+frameCount
+    +"\n mouseX : "+mouseX
+    +"\n mouseY : "+mouseY
+    ,20,40);
+}
