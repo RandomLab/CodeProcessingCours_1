@@ -1,32 +1,34 @@
-
-PImage bob;
+PImage ima;
 
 void setup(){
   size(800,800,P2D);
-  bob = loadImage("bob.png");
-  bob.resize(int(bob.width*0.8),int(bob.height*0.8));
+   ima = loadImage("montagne.jpeg");
+   ima.resize(width,height);
 }
-
 float ang=0;
 
 void draw(){
+  background(0);
+  //image(ima,0,0);
   
-  tint(random(255),random(255),random(255));
-  imageMode(CENTER);
-  float de=random(0.2,0.9);
-  image(bob,random(width),random(height),bob.width*de,bob.height*de);
+  for(int i=0;i<width;i+=10){
+    for(int j=0;j<height;j+=10){
+      
+      color col = ima.get(i,j);
+      float bri=map(brightness(col),0,255,0,0.1);
+      push();
+      fill(col);
+      translate(i,j);
+        
+      if(bri>0.033){
+        rotate(ang*bri);
+        rect(0,0,3,139);
+      }else{
+        ellipse(0,0,20,20);
+      }
+      pop();
+    }
+  }
   
-  noTint();
-  push();
-  translate(width/2,height/2);
-  rotate(ang);
-  image(bob,0,0);
-  
-  translate(200,0);
-  rotate(ang);
-  scale(0.6);
-  image(bob,0,0);
-  
-  pop();
   ang+=0.01;
 }
